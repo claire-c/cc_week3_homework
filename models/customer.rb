@@ -61,12 +61,17 @@ attr_accessor :name, :funds
     sql = "
       SELECT * FROM films
         INNER JOIN tickets
-        ON films.id = tickets.film_id 
+        ON films.id = tickets.film_id
         WHERE customer_id = $1"
     values = [@id]
     array = SqlRunner.run(sql, values)
     booked_films = array.map { |film| Film.new(film)}
     return booked_films
+  end
+
+  def get_ticket_totals()
+    tickets = show_booked_films()
+    return tickets.length()
   end
 
 end

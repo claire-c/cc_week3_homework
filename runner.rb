@@ -41,4 +41,6 @@ ticket3.save()
 ticket4.save()
 ticket5.save()
 
-p alien.get_customers()
+p claire.get_ticket_totals()
+
+# Buying tickets should decrease the funds of the customer by the price

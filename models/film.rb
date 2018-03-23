@@ -71,5 +71,10 @@ class Film
     return customers
   end
 
+  def get_customer_headcount()
+    customers_array = get_customers()
+    return customers_array.length
+  end
+
 
 end
