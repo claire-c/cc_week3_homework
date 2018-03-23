@@ -40,3 +40,7 @@ ticket2.save()
 ticket3.save()
 ticket4.save()
 ticket5.save()
+
+ ticket1.delete()
+# claire.delete()
+# jaws.delete(
