@@ -57,4 +57,16 @@ attr_accessor :name, :funds
     SqlRunner.run(sql, values)
   end
 
+  def show_booked_films()
+    sql = "
+      SELECT * FROM films
+        INNER JOIN tickets
+        ON films.id = tickets.film_id 
+        WHERE customer_id = $1"
+    values = [@id]
+    array = SqlRunner.run(sql, values)
+    booked_films = array.map { |film| Film.new(film)}
+    return booked_films
+  end
+
 end

@@ -41,6 +41,4 @@ ticket3.save()
 ticket4.save()
 ticket5.save()
 
- ticket1.delete()
-# claire.delete()
-# jaws.delete(
+p claire.show_booked_films

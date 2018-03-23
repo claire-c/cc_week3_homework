@@ -6,7 +6,8 @@ require_relative('customer.rb')
 
 class Ticket
 
-  attr_reader :id, :customer_id, :film_id
+  attr_reader :id
+  attr_accessor :customer_id, :film_id
 
   def initialize(ticket_hash)
     @customer_id = ticket_hash['customer_id'].to_i
