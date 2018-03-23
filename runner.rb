@@ -40,7 +40,3 @@ ticket2.save()
 ticket3.save()
 ticket4.save()
 ticket5.save()
-
-ticket5.film_id = terminator.id
-
-ticket5.update()

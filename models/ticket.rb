@@ -44,4 +44,12 @@ class Ticket
     SqlRunner.run(sql, values)
   end
 
+  def self.get_all()
+    sql = "SELECT * FROM tickets;"
+    result_array = SqlRunner.run(sql)
+    tickets = result_array.map { |ticket| Ticket.new(ticket)}
+    return tickets
+  end
+
+
 end

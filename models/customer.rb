@@ -44,4 +44,11 @@ attr_accessor :name, :funds
     SqlRunner.run(sql, values)
   end
 
+  def self.get_all()
+    sql = "SELECT * FROM customers;"
+    result_array = SqlRunner.run(sql)
+    customers = result_array.map { |customer| Customer.new(customer)}
+    return customers
+  end
+
 end
