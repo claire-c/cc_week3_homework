@@ -15,5 +15,24 @@ class Film
     @id = film_hash['id'].to_i if film_hash['id']
   end
 
+  def save()
+    sql = "
+    INSERT INTO films
+    (title, price)
+    VALUES
+    ($1, $2)
+    RETURNING id;
+    "
+    values = [@title, @price]
+    hash = SqlRunner.run(sql, values)
+    @id = hash[0]['id']
+  end
+
+  def self.delete_all()
+    sql = "DELETE FROM films;"
+    SqlRunner.run(sql)
+  end
+
+
 
 end
