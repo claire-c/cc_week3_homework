@@ -41,4 +41,4 @@ ticket3.save()
 ticket4.save()
 ticket5.save()
 
-p claire.show_booked_films
+p alien.get_customers()
