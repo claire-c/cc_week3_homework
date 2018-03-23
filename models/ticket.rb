@@ -9,8 +9,8 @@ class Ticket
   attr_reader :id, :customer_id, :film_id
 
   def initialize(ticket_hash)
-    @customer_id = ticket_hash['customer_id']
-    @film_id = ticket_hash['film_id']
+    @customer_id = ticket_hash['customer_id'].to_i
+    @film_id = ticket_hash['film_id'].to_i
     @id = ticket_hash['id'].to_i if ticket_hash['id']
   end
 
@@ -31,6 +31,17 @@ class Ticket
   def self.delete_all
     sql = "DELETE FROM tickets;"
     SqlRunner.run(sql)
+  end
+
+  def update()
+    sql = "
+      UPDATE tickets
+      SET (customer_id, film_id) =
+      ($1, $2)
+      WHERE id = $3;
+      "
+    values = [@customer_id, @film_id, @id]
+    SqlRunner.run(sql, values)
   end
 
 end
