@@ -3,6 +3,8 @@ require('pg')
 require_relative('film.rb')
 require_relative('../db/sql_runner.rb')
 require_relative('ticket.rb')
+require_relative('screening.rb')
+require_relative('film.rb')
 
 class Customer
 
@@ -73,5 +75,19 @@ attr_accessor :name, :funds
     tickets = show_booked_films()
     return tickets.length()
   end
+  #
+  # def pay_for_ticket(film)
+  #   s = Screening.find_for_film(film_id)
+  #   if s.num_tickets > 0
+  #     # t = Ticket.new(....)
+  #     # t.save()
+  #     @funds -= film.price
+  #     update()
+  #     s.num_tickets -= 1
+  #     s.update()
+  #    else
+  #      return nil
+  #    end
+  # end
 
 end

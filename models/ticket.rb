@@ -3,28 +3,37 @@ require('pg')
 require_relative('../db/sql_runner')
 require_relative('film.rb')
 require_relative('customer.rb')
+require_relative('screening.rb')
 
 class Ticket
 
   attr_reader :id
-  attr_accessor :customer_id, :film_id
+  attr_accessor :customer_id, :film_id, :screening_id
 
   def initialize(ticket_hash)
     @customer_id = ticket_hash['customer_id'].to_i
     @film_id = ticket_hash['film_id'].to_i
+    @screening_id = ticket_hash['screening_id'].to_i
     @id = ticket_hash['id'].to_i if ticket_hash['id']
   end
 
+  # def buy_ticket(film, customer)
+  #
+  #    if film != nil && customer != nil
+  #      customer.funds -= film.price
+  #      customer.update()
+  #    end
+  # end
 
   def save()
     sql = "
     INSERT INTO tickets
-    (customer_id, film_id)
+    (customer_id, film_id, screening_id)
     VALUES
-    ($1, $2)
+    ($1, $2, $3)
     RETURNING id;
     "
-    values = [@customer_id, @film_id]
+    values = [@customer_id, @film_id, @screening_id]
     hash = SqlRunner.run(sql, values)
     @id = hash[0]['id']
   end
@@ -37,11 +46,11 @@ class Ticket
   def update()
     sql = "
       UPDATE tickets
-      SET (customer_id, film_id) =
-      ($1, $2)
-      WHERE id = $3;
+      SET (customer_id, film_id, screening_id) =
+      ($1, $2, $3)
+      WHERE id = $4;
       "
-    values = [@customer_id, @film_id, @id]
+    values = [@customer_id, @film_id, @screening_id, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -57,6 +66,8 @@ class Ticket
     values = [@id]
     SqlRunner.run(sql, values)
   end
+
+
 
 
 end
