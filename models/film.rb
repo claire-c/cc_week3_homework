@@ -77,7 +77,7 @@ class Film
     return customers_array.length
   end
 
-  def most_tickets_sold()
+  def most_popular_screening()
     sql = "
       SELECT COUNT(screenings.time), screenings.time
         FROM tickets
@@ -91,6 +91,17 @@ class Film
     values = [@id]
     array = SqlRunner.run(sql, values)
     return array[0]
+  end
+
+  def find_screenings()
+    sql = "
+      SELECT * from screenings
+        WHERE screenings.film_id = $1;"
+
+    values = [@id]
+    array = SqlRunner.run(sql, values)
+    screenings = array.map { |screening| Screening.new(screening) }
+    return screenings
   end
 
 

@@ -58,6 +58,17 @@ class Screening
     SqlRunner.run(sql, values)
   end
 
+  def self.find_one_films_screenings(film_to_find)
+    sql = "
+      SELECT * from screenings
+        WHERE screenings.film_id = $1;"
+
+    values = [film_to_find.id]
+    array = SqlRunner.run(sql, values)
+    screenings = array.map { |screening| Screening.new(screening)}
+    return screenings
+  end
+
 
 
 

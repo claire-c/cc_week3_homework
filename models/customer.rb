@@ -75,19 +75,18 @@ attr_accessor :name, :funds
     tickets = show_booked_films()
     return tickets.length()
   end
-  #
-  # def pay_for_ticket(film)
-  #   s = Screening.find_for_film(film_id)
-  #   if s.num_tickets > 0
-  #     # t = Ticket.new(....)
-  #     # t.save()
-  #     @funds -= film.price
-  #     update()
-  #     s.num_tickets -= 1
-  #     s.update()
-  #    else
-  #      return nil
-  #    end
-  # end
+
+  def pay_for_ticket(screening, film)
+    if screening.remaining_tickets > 0
+      ticket = Ticket.new( { 'customer_id' => @id, 'film_id' => screening.film_id, 'screening_id' => screening.id } )
+      ticket.save()
+      screening.remaining_tickets -= 1
+      screening.update()
+      @funds -= film.price
+      update()
+     else
+       return nil
+     end
+  end
 
 end

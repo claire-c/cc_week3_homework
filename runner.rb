@@ -59,16 +59,15 @@ ticket3.save()
 ticket4.save()
 ticket5.save()
 
-p alien.most_tickets_sold()
+p claire.pay_for_ticket(alien_morning, alien)
+#p alien.find_screenings()
+#p Screening.find_one_films_screenings(alien)
+
+#p alien.most_popular_screening()
 #
 #
 #
 # #p claire.show_booked_films()
 
-# Write a method that finds out most tickets sold for a given film
-#
-# # Write a method that finds out what is the most popular time (most tickets sold) for a given film
 #
 # # Limit the available tickets for screenings.
-#
-# # Add any other extensions you think would be great to have at a cinema! sa
