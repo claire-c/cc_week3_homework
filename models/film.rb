@@ -77,5 +77,21 @@ class Film
     return customers_array.length
   end
 
+  def most_tickets_sold()
+    sql = "
+      SELECT COUNT(screenings.time), screenings.time
+        FROM tickets
+        INNER JOIN films ON tickets.film_id = films.id
+        INNER JOIN screenings ON tickets.screening_id = screenings.id
+        WHERE films.id = $1
+        GROUP BY screenings.time
+        ORDER BY COUNT(screenings.time) DESC
+        LIMIT 1;
+      "
+    values = [@id]
+    array = SqlRunner.run(sql, values)
+    return array[0]
+  end
+
 
 end

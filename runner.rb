@@ -47,10 +47,10 @@ jaws_afternoon.save()
 et_morning.save()
 
 ticket1 = Ticket.new({'customer_id' => claire.id, 'film_id' => alien.id, 'screening_id' => alien_morning.id })
-ticket2 = Ticket.new({'customer_id' => claire.id, 'film_id' => jaws.id, 'screening_id' => jaws_afternoon.id})
+ticket2 = Ticket.new({'customer_id' => claire.id, 'film_id' => alien.id, 'screening_id' => alien_afternoon.id})
 ticket3 = Ticket.new({'customer_id' => mike.id, 'film_id' => alien.id, 'screening_id' => alien_morning.id})
-ticket4 = Ticket.new({'customer_id' => simon.id, 'film_id' => jaws.id, 'screening_id' => jaws_afternoon.id})
-ticket5 = Ticket.new({'customer_id' => rachel.id, 'film_id' => et.id, 'screening_id' => et_morning.id})
+ticket4 = Ticket.new({'customer_id' => simon.id, 'film_id' => alien.id, 'screening_id' => alien_morning.id})
+ticket5 = Ticket.new({'customer_id' => rachel.id, 'film_id' => alien.id, 'screening_id' => alien_morning.id})
 
 
 ticket1.save()
@@ -58,10 +58,14 @@ ticket2.save()
 ticket3.save()
 ticket4.save()
 ticket5.save()
+
+p alien.most_tickets_sold()
 #
 #
 #
 # #p claire.show_booked_films()
+
+# Write a method that finds out most tickets sold for a given film
 #
 # # Write a method that finds out what is the most popular time (most tickets sold) for a given film
 #
